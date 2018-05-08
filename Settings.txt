@@ -1,0 +1,6 @@
+Extensions to install on Visual studio code
+
+node-react- snippet
+prettier
+live server
+nodejs module intellisense
