@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 // point URL to the files in our app
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
@@ -21,8 +22,11 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-// line below just to show that our app work
-app.get("/", (req, res) => res.send("hellow"));
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require("./config/passport")(passport);
 
 // use Routes -- at first you will get an error that Router.use() requires a middleware function.. this is ok keep continuing
 app.use("/api/users", users);
