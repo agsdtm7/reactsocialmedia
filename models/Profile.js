@@ -10,7 +10,9 @@ const ProfileSchema = new Schema({
         max: 40
     },
     handle: {
-        type: String
+        type: String,
+        required: true,
+        max: 40
     },
     company: {
         type: String
@@ -32,9 +34,10 @@ const ProfileSchema = new Schema({
     bio: {
         type: String
     },
-    github: {
+    githubusername: {
         type: String
     },
+    // this is an array of object
     experience: [{
         title: {
             type: String,
@@ -55,6 +58,42 @@ const ProfileSchema = new Schema({
         to: {
             type: String
         },
+        current: {
+            type: Boolean,
+            default: false
+        },
+        description: {
+            type: String
+        }
+    }],
+    // this is an array of object
+    education: [{
+        school: {
+            type: String,
+            required: true
+        },
+        degree: {
+            type: String,
+            required: true
+        },
+        fieldofstudy: {
+            type: String,
+            required: true
+        },
+        from: {
+            type: String,
+            required: true
+        },
+        to: {
+            type: String
+        },
+        current: {
+            type: Boolean,
+            default: false
+        },
+        description: {
+            type: String
+        }
     }],
     social: {
         youtube: {
