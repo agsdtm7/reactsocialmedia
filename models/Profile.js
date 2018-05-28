@@ -5,9 +5,8 @@ const Schema = mongoose.Schema;
 // create Schema
 const ProfileSchema = new Schema({
     user: {
-        type: String,
-        required: true,
-        max: 40
+        type: Schema.Types.ObjectId, // this one was changed from string to this in lecture 18
+        ref: 'users',
     },
     handle: {
         type: String,
