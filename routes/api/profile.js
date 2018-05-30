@@ -6,6 +6,7 @@ const passport = require('passport');
 // load Validation
 const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
+const validateEducationInput = require('../../validation/education');
 // load Profile Modeal
 const Profile = require('../../models/Profile');
 // load User Profile
@@ -206,6 +207,40 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
             // Add to exp array, side note: we use unshift instead of push because we want newExp to be added to the beginning
             profile.experience.unshift(newExp);
             // it will add the experience and it will return the profile with the new experience
+            // on the FRONT END application it will update our state and we'll be able to see that new experience
+            profile.save().then(profile => res.json(profile));
+        })
+});
+
+// @route   POST api/profile/education
+// @desc    Add education to profile
+// @access  Public 
+
+router.post('/education', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validateEducationInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+        // return any errors with 400 status
+        return res.status(400).json(errors);
+    }
+
+    Profile.findOne({
+        user: req.user.id
+    })
+        .then(profile => {
+            const newEdu = {
+                school: req.body.school,
+                degree: req.body.degree,
+                fieldofstudy: req.body.fieldofstudy,
+                from: req.body.from,
+                to: req.body.to,
+                current: req.body.current,
+                description: req.body.description
+            }
+            // Add to exp array, side note: we use unshift instead of push because we want newEdu to be added to the beginning
+            profile.education.unshift(newEdu);
+            // it will add the education and it will return the profile with the new education
             // on the FRONT END application it will update our state and we'll be able to see that new experience
             profile.save().then(profile => res.json(profile));
         })
