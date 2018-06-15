@@ -19,7 +19,7 @@ router.get("/test", (req, res) => res.json({
 }));
 
 // first validation -- lecture #14 -----
-// @route   GET api/users/register
+// @route   POST api/users/register
 // @desc    Test users route
 // @access  Public
 router.post("/register", (req, res) => {
