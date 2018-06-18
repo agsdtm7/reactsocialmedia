@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// import axios from 'axios'; // got rid at lecture #41
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
@@ -16,6 +17,12 @@ class Register extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
+        }
     }
 
     onChange(e) {
@@ -35,16 +42,17 @@ class Register extends Component {
 
         // lecture #35
         //console.log(newUser);
-        // lecture #36 -- this is ONLY FOR TESTING 
-        // axios.post('api/users/register', newUser)
-        //     .then(res => console.log(res.data))
-        //     .catch(err => this.setState({ errors: err.response.data }));
+        // lecture #36 -- this is ONLY FOR TESTING, on lecture #41 moved to authActions.js
+
     }
 
     render() {
 
         const { errors } = this.state; // we use destructuring, it has same meaning with the line below
         // const errors = this.state.errors
+
+        // const { user } = this.props.auth;
+
         return (
             <div className="register">
                 <div className="container">
@@ -99,4 +107,15 @@ class Register extends Component {
     }
 }
 
-export default connect(null, { registerUser })(Register);
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    auth: state.auth,   // this means you assign the word 'auth' to represent 'state.auth'. IMPORTANT NOTE: the 'auth' in 'state.auth' comes from index.js in reducers folder line 5: auth: authReducer
+    errors: state.errors
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);
