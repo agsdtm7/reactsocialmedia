@@ -1,7 +1,8 @@
 import axios from 'axios';
-// import { TEST_DISPATCH } from './types'; // THIS WAS COMMENTED AT #41
-import { GET_ERRORS } from './types';
 import setAuthToken from '../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
+// import { TEST_DISPATCH } from './types'; // THIS WAS COMMENTED AT #41
+import { GET_ERRORS, SET_CURRENT_USER } from './types';
 // Register User
 export const registerUser = (userData, history) => dispatch => {
     // dispatch above was added at lecture #41
@@ -26,8 +27,12 @@ export const loginUser = userData => dispatch => {
             const { token } = res.data;
             // Set token to localStorage
             localStorage.setItem('jwtToken', token);
-            // Set token to Auth header
+            // Set token to Auth header. REMEMBER, this token contains user information (i.e: id, name, avatar, and others (see your  schema details) )
             setAuthToken(token);
+            // Decode token to get user data
+            const decoded = jwt_decode(token);
+            // Set Current user
+            dispatch(setCurrentUser(decoded));
         })
         // taking care of the error
         .catch(err =>
@@ -36,3 +41,11 @@ export const loginUser = userData => dispatch => {
                 payload: err.response.data
             }));
 };
+
+// Set logged in user
+export const setCurrentUser = (decoded) => {
+    return {
+        type: SET_CURRENT_USER,
+        payload: decoded
+    }
+}
