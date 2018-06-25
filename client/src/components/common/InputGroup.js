@@ -19,12 +19,13 @@ const InputGroup = ({
                 </span>
             </div>
             <input
-                className={classnames('form-control form-control-lg', { 'is-invalid': error })} placeholder={placeholder}
+                className={classnames('form-control form-control-lg', { 'is-invalid': error })}
+                placeholder={placeholder}
                 name={name}
                 value={value}
                 onChange={onChange}
             />
-            {error && (<div className="invalid-feedback">{error}</div>)}
+            {error && <div className="invalid-feedback">{error}</div>}
         </div>
     )
 }
@@ -39,5 +40,8 @@ InputGroup.propTypes = {
     onChange: PropTypes.func.isRequired,
 }
 
+InputGroup.defaultProps = {
+    type: 'text'
+}
 
 export default InputGroup;

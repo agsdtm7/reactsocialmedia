@@ -20,6 +20,7 @@ export const getCurrentProfile = () => dispatch => {
         );
 }
 
+
 // Profile loading
 export const setProfileLoading = () => {
     return {
