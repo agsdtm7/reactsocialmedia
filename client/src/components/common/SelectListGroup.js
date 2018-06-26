@@ -27,7 +27,7 @@ const SelectListGroup = ({
                 {selectOptions}
             </select>
             {info && <small className="form-text text-muted">{info}</small>}
-            {error && (<div className="invalid-feedback">{error}</div>)}
+            {error && <div className="invalid-feedback">{error}</div>}
         </div>
     )
 }
@@ -40,6 +40,5 @@ SelectListGroup.propTypes = {
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired
 }
-
 
 export default SelectListGroup;
