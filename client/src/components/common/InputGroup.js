@@ -9,7 +9,7 @@ const InputGroup = ({
     error,
     icon,
     type,
-    onChange,
+    onChange
 }) => {
     return (
         <div className="input-group mb-3">
