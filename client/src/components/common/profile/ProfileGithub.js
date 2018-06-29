@@ -4,7 +4,7 @@ class ProfileGithub extends Component {
     render() {
         return (
             <div>
-                <h1>TODO: Profile Github</h1>
+                <h1>TODO: Profile ProfileGithub</h1>
             </div>
         )
     }
