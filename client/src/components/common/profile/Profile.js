@@ -33,13 +33,14 @@ class Profile extends Component {
                                 Back To Profiles
                             </Link>
                         </div>
-                        <div className="col-md-6">
-                            <ProfileHeader />
-                            <ProfileAbout />
-                            <ProfileCreds />
-                            <ProfileGithub />
-                        </div>
+                        <div className="col-md-6" />
+
                     </div>
+                    <ProfileHeader profile={profile} />
+                    <ProfileAbout />
+                    <ProfileCreds />
+                    <ProfileGithub />
+
                 </div>
             );
         }
@@ -54,14 +55,14 @@ class Profile extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
 Profile.propTypes = {
     getProfileByHandle: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
     profile: state.profile
