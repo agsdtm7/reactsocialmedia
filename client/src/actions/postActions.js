@@ -12,7 +12,7 @@ export const addPost = postData => dispatch => {
         .then(res =>
             dispatch({
                 type: ADD_POST,
-                payload: res_data
+                payload: res.data
             })
         )
         .catch(err =>
