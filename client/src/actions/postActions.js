@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
     ADD_POST,
+    ADD_COMMENT,
     DELETE_POST,
     GET_ERRORS,
     GET_POSTS,
@@ -113,6 +114,24 @@ export const removeLike = id => dispatch => {
         );
 }
 
+// add comment
+export const addComment = (postId, commentData) => dispatch => {
+    //dispatch(clearErrors());
+    axios
+        .post(`/api/posts/comment/${postId}`, commentData)
+        .then(res =>
+            dispatch({
+                type: GET_POST,
+                payload: res.data
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 
 // set loading state
 export const setPostLoading = () => {
