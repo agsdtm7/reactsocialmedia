@@ -1,4 +1,4 @@
-import { ADD_POST, GET_POSTS, DELETE_POST, POST_LOADING } from '../actions/types';
+import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING } from '../actions/types';
 
 const initialState = {
     posts: [],
@@ -21,6 +21,13 @@ export default function (state = initialState, action) {
                 posts: action.payload,
                 loading: false
             };
+        // lECTURE 71
+        case GET_POST:
+            return {
+                ...state,
+                post: action.payload,
+                loading: false
+            }
         // lecture #67 
         // we want to return state object,anything in the state (line 14), anything on the posts in particular we want the current post state.post and we also wanna add new post  which comes in from the payload
         case ADD_POST:
