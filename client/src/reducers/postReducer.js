@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: true
-            }
+            };
         // lecture 68
         case GET_POSTS:
             return {
@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
                 ...state,
                 post: action.payload,
                 loading: false
-            }
+            };
         // lecture #67 
         // we want to return state object,anything in the state (line 14), anything on the posts in particular we want the current post state.post and we also wanna add new post  which comes in from the payload
         case ADD_POST:
