@@ -174,12 +174,12 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
 
 router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
     // we use the post validation because it has the same fields as post
-    const { errors, isValid } = validatePostInput(req.body);
+    // const { errors, isValid } = validatePostInput(req.body);
     // Check Validation
-    if (!isValid) {
-        // if any errors, send 400 with errors object and the operation is over
-        return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    // if any errors, send 400 with errors object and the operation is over
+    //    return res.status(400).json(errors);
+    //}
     // If it passes the validation then find the post by id then add the comment then save it. in case any error happens, display the error
     Post.findById(req.params.id)
         .then(post => {
